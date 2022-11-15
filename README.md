@@ -21,6 +21,22 @@ Our script does the following:
 - Copies used images to an output folder, to allow them to be moved to a new home.
 - Afterwards, it asks if you want to try downloading the original size images using [download_better_images.py](https://raw.githubusercontent.com/timhutton/twitter-archive-parser/main/download_better_images.py).
 
+## Docker
+
+If you don't have a working Python environment available you can use the ad-hoc Docker image instead:
+
+```
+$ docker build . -t twitter-archive-parser
+$ docker run --rm \
+    -v /path/to/your/unpacked/archive:/data \
+    -e BETTER_IMAGES=y \
+    twitter-archive-parser
+```
+
+Set `BETTER_IMAGES=n` if you don't want to download your high-resolution images.
+
+The markdown-files and media will be moved to the `output` sub-directory of your archive.
+
 ## TODO:
 - Output as HTML files?
 - Parse likes and DMs too (Issues [#22](https://github.com/timhutton/twitter-archive-parser/issues/22) and [#6](https://github.com/timhutton/twitter-archive-parser/issues/6))
